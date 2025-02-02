@@ -7,25 +7,27 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class RegisterTest {
     public static void main(String[] args) {
-    	
-    	System.setProperty("webdriver.chrome.driver", "C:\\drivers\\chromedriver.exe");
-    	WebDriver driver = new ChromeDriver();
+        System.setProperty("webdriver.chrome.driver", "C:\\drivers\\chromedriver.exe");
+        WebDriver driver = new ChromeDriver();
 
-        driver.get("https://chitthhii.netlify.app/");
+        driver.get("https://chitthhii.netlify.app/register");
 
-        WebElement registerLink = driver.findElement(By.id("https://chitthhii.netlify.app/register")); 
-        registerLink.click();
+        WebElement Username = driver.findElement(By.id("Username"));
+        WebElement Email = driver.findElement(By.id("Email"));
+        WebElement Password = driver.findElement(By.id("Password"));
+        WebElement ConfirmPassword = driver.findElement(By.id("ConfirmPassword"));
 
-        WebElement usernameField = driver.findElement(By.id("Username")); 
-        WebElement emailField = driver.findElement(By.id("Email"));       
-        WebElement passwordField = driver.findElement(By.id("Password")); 
-        WebElement confirmPasswordField = driver.findElement(By.id("ConfirmPassword")); 
-        WebElement registerButton = driver.findElement(By.id("register")); 
+        String username = driver.findElement(By.id("username")).getAttribute("value");  
+        String email = driver.findElement(By.id("email")).getAttribute("value");  
+        String password = driver.findElement(By.id("password")).getAttribute("value");  
+        String confirmPassword = password;  
+        usernameField.sendKeys(username);
+        emailField.sendKeys(email);
+        passwordField.sendKeys(password);
+        confirmPasswordField.sendKeys(confirmPassword);
 
-        usernameField.sendKeys("testuser123");
-        emailField.sendKeys("testuser123@example.com");
-        passwordField.sendKeys("password123");
-        confirmPasswordField.sendKeys("password123");
+   
+        WebElement registerButton = driver.findElement(By.id("register"));
         registerButton.click();
 
         String expectedUrl = "https://chitthhii.netlify.app"; 
@@ -34,7 +36,6 @@ public class RegisterTest {
         } else {
             System.out.println("Register Test Failed");
         }
-
         driver.quit();
     }
 }
